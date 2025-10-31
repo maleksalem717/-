@@ -1,0 +1,211 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, .app {
+  width: 100%;
+  background: #000;
+  color: #f4e512;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.header {
+  position: relative;
+  background: radial-gradient(circle at top left, #111, #000);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glow-text {
+  font-size: 2.4rem;
+  background: linear-gradient(90deg, #ff0059, #00f0ff, #ff00f7);
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px #fff;
+  animation: hueRotate 5s infinite linear;
+}
+
+@keyframes hueRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+.translate-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #00f0ff;
+  filter: drop-shadow(0 0 8px #00e5ff);
+  transition: all 0.3s ease;
+}
+
+.translate-btn:hover {
+  transform: scale(1.3);
+  color: #ff00f7;
+}
+
+/* HERO */
+.hero {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.background-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(80%) saturate(130%) contrast(110%);
+  animation: slowZoom 20s infinite alternate ease-in-out;
+}
+
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+/* PARAGRAPH */
+.glow-paragraph {
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 80px 20px;
+  text-shadow: 0 0 25px #00eaff;
+  animation: floating 5s ease-in-out infinite;
+  line-height: 1.8;
+}
+
+@keyframes floating {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 50px;
+}
+
+.image-card {
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.image-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 35px rgba(0, 255, 255, 0.5);
+}
+
+.image-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* FULLSCREEN IMAGE */
+.fullscreen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  backdrop-filter: blur(5px);
+}
+
+.fullscreen img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 60px rgba(0, 255, 255, 0.7);
+}
+
+.close-btn {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.close-btn:hover {
+  color: #ff004c;
+  transform: scale(1.3) rotate(90deg);
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 35px 20px;
+  background: rgba(20, 20, 20, 0.9);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-icons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 15px;
+}
+
+.footer-icons a {
+  color: #00f0ff;
+  filter: drop-shadow(0 0 8px #00f0ff);
+  transition: all 0.3s ease;
+}
+
+.footer-icons a:hover {
+  color: #ff00f7;
+  transform: scale(1.2);
+  filter: drop-shadow(0 0 15px #ff00f7);
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  color: #ccc;
+  text-shadow: 0 0 8px #00eaff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .glow-text { font-size: 1.8rem; }
+  .glow-paragraph { font-size: 1.1rem; padding: 50px 20px; }
+}
+.ticket-section {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.9), rgba(20,20,20,0.8));
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticket-text {
+  font-size: 1.5rem;
+  color: #ffea00;
+  line-height: 1.8;
+  font-weight: bold;
+  text-shadow: 0 0 15px #ff007f, 0 0 30px #00eaff;
+  animation: glowingText 3s infinite alternate ease-in-out;
+}
+
+@keyframes glowingText {
+  0% { text-shadow: 0 0 20px #ff00ff, 0 0 40px #00eaff; transform: scale(1); }
+  50% { text-shadow: 0 0 40px #ffea00, 0 0 70px #ff00ff; transform: scale(1.03); }
+  100% { text-shadow: 0 0 20px #00eaff, 0 0 40px #ff00ff; transform: scale(1); }
+}
