@@ -1,48 +1,57 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Globe2,
+  Languages,
   X,
   PhoneCall,
-  MessageCircle,
+  MessageCircleMore,
   MapPin,
 } from "lucide-react";
 import "./App.css";
 
 function App() {
-  const [lang, setLang] = useState("ru");
+  const [lang, setLang] = useState("ar");
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
   useEffect(() => {
-    document.title = lang === "ar" ? "السيرك الروسي" : "Русский цирк";
+    document.title =
+      lang === "ar" ? "🎪 السيرك الروسي العالمي 🎪" : "🎪 Мировой Русский Цирк 🎪";
   }, [lang]);
 
   const toggleLang = () => setLang(lang === "ar" ? "ru" : "ar");
 
   const text = {
     ar: {
-      title: "السيرك الروسي",
-      paragraph: `استعد لعروض تبهر الحواس 🎪 — موسيقى، ألوان، وأداء لا مثيل له.
-      السيرك الروسي يأتيكم بأقوى العروض العالمية ومواهب تخطف الأنفاس.`,
-      mid: `✨ تذاكر السيرك متاحة الآن ✨  
-      🎟️ تذكرة VIP بسعر 2000 جنيه  
-      🎟️ التذكرة العادية 1500 جنيه  
-      👶 الأطفال من عمر سنتين إلى 8 سنوات بـ 700 جنيه فقط  
-      👼 الأطفال أقل من سنتين مجانًا 🎁  
-      لا تفوت الفرصة لتعيش تجربة أسطورية تجمع بين الخيال والإبداع والعروض النارية 💫🔥`,
-      footer: "بواسطة Ahmed Bakri",
+      title: "🎪 السيرك الروسي العالمي 🎪",
+      subtitle: "✨ عروض تخطف الأنفاس... متعة لا تُنسى 🎟️",
+      paragraph: `انضم إلينا في عالمٍ مليءٍ بالمغامرة والإثارة!  
+شاهد أجرأ العروض من الأكروبات المحترفين 🤸‍♂️،  
+واستمتع برؤية الأسود المدربة 🦁،  
+واختبر سحر الخدع البصرية ✨ في تجربة فريدة تجمع بين الحماس والدهشة.  
+استعد لرحلة لا تُنسى مع السيرك الروسي العالمي! 🎭`,
+      paragraph2: `🎟️ أسعار التذاكر:  
+💎 *VIP*: 2000 جنيه مصري  
+🎫 *عادية*: 1500 جنيه مصري  
+👦 *الأطفال من 5 إلى 10 سنوات*: 700 جنيه مصري  
+
+📞 للحجز والاستفسار تواصل معنا عبر ↓`,
+      footer: " بواسطة أحمد بكري",
     },
     ru: {
-      title: "Русский цирк",
-      paragraph: `Добро пожаловать в магию 🎪 — свет, движение и фантазия.
-      Русский цирк представляет грандиозные шоу с мировыми артистами!`,
-      mid: `✨ Билеты уже в продаже ✨  
-      🎟️ VIP — 2000 ег. фунтов  
-      🎟️ Обычный билет — 1500 ег. фунтов  
-      👶 Дети от 2 до 8 лет — 700 ег. фунтов  
-      👼 До 2 лет — бесплатно 🎁  
-      Не упустите шанс стать частью легендарного шоу, где реальность встречает волшебство 💫🔥`,
-      footer: "от Ahmed Bakri",
+      title: "🎪 Мировой Русский Цирк 🎪",
+      subtitle: "✨ Захватывающие шоу... Незабываемые эмоции 🎟️",
+      paragraph: `Добро пожаловать в мир удивительных приключений и веселья!  
+Увидьте смелых акробатов 🤸‍♂️,  
+наслаждайтесь выступлением дрессированных львов 🦁  
+и откройте магию иллюзий ✨ — всё это в одном великолепном шоу!  
+Приготовьтесь к незабываемому путешествию с Мировым Русским Цирком! 🎭`,
+      paragraph2: `🎟️ Цены на билеты:  
+💎 *VIP*: 2000 египетских фунтов  
+🎫 *Обычный билет*: 1500 фунтов  
+👦 *Дети от 5 до 10 лет*: 700 фунтов  
+
+📞 Для бронирования и информации свяжитесь с нами ↓`,
+      footer: "Переведено Ахмедом Бакри",
     },
   };
 
@@ -55,21 +64,32 @@ function App() {
 
   return (
     <div className="app">
-      {/* Header */}
+      {/* ===== Header ===== */}
       <header className="header">
-        <h1 className="glow-text">{text[lang].title}</h1>
+        <div>
+          <h1 className="glow-text">{text[lang].title}</h1>
+          <motion.p
+            className="header-sub"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.5 }}
+          >
+            {text[lang].subtitle}
+          </motion.p>
+        </div>
+
         <motion.button
           onClick={toggleLang}
           className="translate-btn"
           whileHover={{ rotate: 360, scale: 1.2 }}
-          transition={{ duration: 1 }}
-          title="ترجمة / Перевод"
+          transition={{ duration: 0.8 }}
+          title="تبديل اللغة / Сменить язык"
         >
-          <Globe2 size={28} />
+          <Languages size={30} />
         </motion.button>
       </header>
 
-      {/* Hero Video */}
+      {/* ===== Hero Video ===== */}
       <section className="hero">
         <motion.video
           autoPlay
@@ -85,38 +105,22 @@ function App() {
         </motion.video>
       </section>
 
-      {/* Main Paragraph */}
-      <motion.p
-        className="glow-paragraph"
+      {/* ===== Paragraph ===== */}
+      <motion.div
+        className="glow-paragraph fancy-text"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.8 }}
       >
-        {text[lang].paragraph}
-      </motion.p>
-
-      {/* New Ticket Section */}
-      <motion.div
-        className="ticket-section"
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, type: "spring" }}
-      >
-        <motion.p
-          className="ticket-text"
-          animate={{ textShadow: ["0 0 20px #ff00ff", "0 0 40px #00eaff", "0 0 20px #ff00ff"] }}
-          transition={{ repeat: Infinity, duration: 3 }}
-        >
-          {text[lang].mid}
-        </motion.p>
+        <p>{text[lang].paragraph}</p>
       </motion.div>
 
-      {/* Gallery */}
+      {/* ===== Gallery ===== */}
       <section className="gallery">
         {images.map((img, i) => (
           <motion.div
             key={i}
-            whileHover={{ scale: 1.1, rotate: 1 }}
+            whileHover={{ scale: 1.1 }}
             className="image-card"
             onClick={() => setFullscreenImage(img)}
           >
@@ -125,7 +129,46 @@ function App() {
         ))}
       </section>
 
-      {/* Fullscreen Image */}
+      {/* ===== Tickets & Contact ===== */}
+      <motion.div
+        className="ticket-section"
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5, type: "spring" }}
+      >
+        <motion.p
+          className="ticket-text fancy-text"
+          animate={{
+            textShadow: [
+              "0 0 15px #ffd700",
+              "0 0 35px #ff9900",
+              "0 0 15px #ffd700",
+            ],
+          }}
+          transition={{ repeat: Infinity, duration: 3 }}
+        >
+          {text[lang].paragraph2}
+        </motion.p>
+
+        {/* Social Icons */}
+        <div className="footer-icons">
+          <a href="https://wa.me/201015836376" target="_blank" rel="noreferrer">
+            <MessageCircleMore size={38} />
+          </a>
+          <a href="tel:+201015836376" target="_blank" rel="noreferrer">
+            <PhoneCall size={38} />
+          </a>
+          <a
+            href="https://maps.app.goo.gl/QWyc2B4KHYbS949y9"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <MapPin size={38} />
+          </a>
+        </div>
+      </motion.div>
+
+      {/* ===== Fullscreen Image ===== */}
       <AnimatePresence>
         {fullscreenImage && (
           <motion.div
@@ -141,31 +184,22 @@ function App() {
               animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
             />
-            <button className="close-btn" onClick={() => setFullscreenImage(null)}>
+            <button
+              className="close-btn"
+              onClick={() => setFullscreenImage(null)}
+            >
               <X size={36} />
             </button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Footer */}
+      {/* ===== Footer ===== */}
       <footer className="footer">
-        <div className="footer-icons">
-          <a href="tel:+201015836376" target="_blank" rel="noreferrer">
-            <PhoneCall size={28} />
-          </a>
-          <a href="https://wa.me/201015836376" target="_blank" rel="noreferrer">
-            <MessageCircle size={28} />
-          </a>
-          <a
-            href="https://maps.app.goo.gl/QWyc2B4KHYbS949y9"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <MapPin size={28} />
-          </a>
-        </div>
-        <p className="footer-text">{text[lang].footer}</p>
+        <p className="footer-text">
+          {lang === "ar" ? " بواسطة " : "Переведено "}
+          <span className="mystic-glow">أحمد بكري</span>
+        </p>
       </footer>
     </div>
   );
