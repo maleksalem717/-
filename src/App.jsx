@@ -10,12 +10,14 @@ import {
 import "./App.css";
 
 function App() {
-  const [lang, setLang] = useState("ar");
+  const [lang, setLang] = useState("ru"); // يبدأ بالروسي
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
   useEffect(() => {
     document.title =
-      lang === "ar" ? "🎪 السيرك الروسي العالمي 🎪" : "🎪 Мировой Русский Цирк 🎪";
+      lang === "ar"
+        ? "🎪 السيرك الروسي العالمي 🎪"
+        : "🎪 Мировой Русский Цирк 🎪";
   }, [lang]);
 
   const toggleLang = () => setLang(lang === "ar" ? "ru" : "ar");
@@ -27,31 +29,31 @@ function App() {
       paragraph: `انضم إلينا في عالمٍ مليءٍ بالمغامرة والإثارة!  
 شاهد أجرأ العروض من الأكروبات المحترفين 🤸‍♂️،  
 واستمتع برؤية الأسود المدربة 🦁،  
-واختبر سحر الخدع البصرية ✨ في تجربة فريدة تجمع بين الحماس والدهشة.  
-استعد لرحلة لا تُنسى مع السيرك الروسي العالمي! 🎭`,
+واختبر سحر الخدع البصرية ✨ في تجربة تجمع بين الحماس والدهشة.  
+احجز الآن لتعيش تجربة لا مثيل لها من السحر والإثارة مع السيرك الروسي العالمي! 🎭`,
       paragraph2: `🎟️ أسعار التذاكر:  
 💎 *VIP*: 2000 جنيه مصري  
 🎫 *عادية*: 1500 جنيه مصري  
 👦 *الأطفال من 5 إلى 10 سنوات*: 700 جنيه مصري  
 
 📞 للحجز والاستفسار تواصل معنا عبر ↓`,
-      footer: " بواسطة أحمد بكري",
+      translated: " بواسطة أحمد بكري",
     },
     ru: {
       title: "🎪 Мировой Русский Цирк 🎪",
-      subtitle: "✨ Захватывающие шоу... Незабываемые эмоции 🎟️",
-      paragraph: `Добро пожаловать в мир удивительных приключений и веселья!  
-Увидьте смелых акробатов 🤸‍♂️,  
-наслаждайтесь выступлением дрессированных львов 🦁  
-и откройте магию иллюзий ✨ — всё это в одном великолепном шоу!  
-Приготовьтесь к незабываемому путешествию с Мировым Русским Цирком! 🎭`,
+      subtitle: "✨ Незабываемое зрелище, где магия встречает реальность 🎟️",
+      paragraph: `Погрузитесь в захватывающий мир огней, адреналина и волшебства!  
+Увидьте смелых акробатов, поражающих воображение 🤸‍♂️,  
+насладитесь великолепием дрессированных львов 🦁,  
+и ощутите магию невероятных иллюзий ✨, которые заставят вас затаить дыхание.  
+Не упустите шанс — бронируйте билеты прямо сейчас и испытайте шоу, которое невозможно забыть! 🎭`,
       paragraph2: `🎟️ Цены на билеты:  
 💎 *VIP*: 2000 египетских фунтов  
 🎫 *Обычный билет*: 1500 фунтов  
 👦 *Дети от 5 до 10 лет*: 700 фунтов  
 
 📞 Для бронирования и информации свяжитесь с нами ↓`,
-      footer: "Переведено Ахмедом Бакри",
+      translated: "Переведено Ахмедом Бакри",
     },
   };
 
@@ -68,14 +70,7 @@ function App() {
       <header className="header">
         <div>
           <h1 className="glow-text">{text[lang].title}</h1>
-          <motion.p
-            className="header-sub"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-          >
-            {text[lang].subtitle}
-          </motion.p>
+          <p className="header-sub">{text[lang].subtitle}</p>
         </div>
 
         <motion.button
@@ -90,33 +85,32 @@ function App() {
       </header>
 
       {/* ===== Hero Video ===== */}
-      <section className="hero">
-        <motion.video
+      <section className="hero fullscreen-section">
+        <video
           autoPlay
           muted
           loop
           playsInline
           className="background-video"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
         >
           <source src="/vedio/ffss.mp4" type="video/mp4" />
-        </motion.video>
+        </video>
       </section>
 
-      {/* ===== Paragraph ===== */}
-      <motion.div
-        className="glow-paragraph fancy-text"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.8 }}
-      >
-        <p>{text[lang].paragraph}</p>
-      </motion.div>
+      {/* ===== Animated Paragraph ===== */}
+      <section className="fullscreen-section">
+        <motion.div
+          className="glow-paragraph fancy-text"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2, ease: "easeOut" }}
+        >
+          <p>{text[lang].paragraph}</p>
+        </motion.div>
+      </section>
 
       {/* ===== Gallery ===== */}
-      <section className="gallery">
+      <section className="gallery fullscreen-section">
         {images.map((img, i) => (
           <motion.div
             key={i}
@@ -130,27 +124,16 @@ function App() {
       </section>
 
       {/* ===== Tickets & Contact ===== */}
-      <motion.div
-        className="ticket-section"
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, type: "spring" }}
-      >
+      <section className="ticket-section fullscreen-section">
         <motion.p
           className="ticket-text fancy-text"
-          animate={{
-            textShadow: [
-              "0 0 15px #ffd700",
-              "0 0 35px #ff9900",
-              "0 0 15px #ffd700",
-            ],
-          }}
-          transition={{ repeat: Infinity, duration: 3 }}
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 2.2 }}
         >
           {text[lang].paragraph2}
         </motion.p>
 
-        {/* Social Icons */}
         <div className="footer-icons">
           <a href="https://wa.me/201015836376" target="_blank" rel="noreferrer">
             <MessageCircleMore size={38} />
@@ -166,7 +149,7 @@ function App() {
             <MapPin size={38} />
           </a>
         </div>
-      </motion.div>
+      </section>
 
       {/* ===== Fullscreen Image ===== */}
       <AnimatePresence>
@@ -197,8 +180,7 @@ function App() {
       {/* ===== Footer ===== */}
       <footer className="footer">
         <p className="footer-text">
-          {lang === "ar" ? " بواسطة " : "Переведено "}
-          <span className="mystic-glow">أحمد بكري</span>
+          <span className="mystic-glow">{text[lang].translated}</span>
         </p>
       </footer>
     </div>
